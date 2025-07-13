@@ -37,3 +37,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 Route::middleware('auth')->group(function () {
     Route::resource('booking', BookingController::class);
 });
+
+Route::get('/lapangan/{id}', [App\Http\Controllers\LapanganController::class, 'show'])->name('lapangan.show');

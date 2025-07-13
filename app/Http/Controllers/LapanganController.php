@@ -48,10 +48,10 @@ class LapanganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $lapangan = Lapangan::findOrFail($id);
-        return view('admin.lapangan.show', compact('lapangan'));
+        $lapangan = \App\Models\Lapangan::findOrFail($id);
+        return view('lapangan.show', compact('lapangan'));
     }
 
     /**

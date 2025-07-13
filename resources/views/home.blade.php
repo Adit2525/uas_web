@@ -55,6 +55,9 @@
                         <a href="{{ route('booking.create', ['lapangan_id' => $lap->id]) }}" class="btn btn-primary">
                             <i class="fas fa-calendar-plus me-1"></i>Booking
                         </a>
+                        <a href="{{ route('lapangan.show', $lap->id) }}" class="btn btn-outline-info mt-2">
+                            <i class="fas fa-info-circle me-1"></i>Detail
+                        </a>
                     @else
                         <a href="{{ route('login') }}" class="btn btn-outline-primary">
                             <i class="fas fa-sign-in-alt me-1"></i>Login untuk Booking
