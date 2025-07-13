@@ -7,8 +7,7 @@ use App\Models\Lapangan;
 
 
 class LapanganController extends Controller
-{
-    public function __construct()
+{    public function __construct()
     {
     }
 
