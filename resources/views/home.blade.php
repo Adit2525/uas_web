@@ -15,7 +15,9 @@
                 <a href="{{ route('login') }}" class="btn btn-outline-light btn-lg ms-2">Login</a>
             @else
                 <a href="{{ route('booking.create') }}" class="btn btn-light btn-lg">Booking Lapangan</a>
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-light btn-lg ms-2">Dashboard</a>
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ route('dashboard') }}" class="btn btn-outline-light btn-lg ms-2">Dashboard</a>
+                @endif
             @endguest
         </div>
     </div>

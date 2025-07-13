@@ -20,18 +20,20 @@
                 </h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('booking.store') }}" method="POST">
+                <form id="bookingForm" action="{{ route('booking.store') }}" method="POST">
                     @csrf
                     
                     <div class="mb-3">
                         <label for="lapangan_id" class="form-label">Pilih Lapangan</label>
                         <select name="lapangan_id" id="lapangan_id" class="form-select @error('lapangan_id') is-invalid @enderror" required>
                             <option value="">Pilih lapangan...</option>
-                            @foreach($lapangan as $lap)
+                            @forelse($lapangan as $lap)
                                 <option value="{{ $lap->id }}" {{ request('lapangan_id') == $lap->id ? 'selected' : '' }}>
                                     {{ $lap->nama }} - {{ $lap->jenis }} (Rp {{ number_format($lap->harga, 0, ',', '.') }})
                                 </option>
-                            @endforeach
+                            @empty
+                                <option value="" disabled>Belum ada lapangan tersedia</option>
+                            @endforelse
                         </select>
                         @error('lapangan_id')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -50,7 +52,7 @@
                     <div class="mb-3">
                         <label for="jam" class="form-label">Jam Booking</label>
                         <input type="time" name="jam" id="jam" class="form-control @error('jam') is-invalid @enderror" 
-                               value="{{ old('jam') }}" required>
+                               value="{{ old('jam') }}" min="06:00" max="22:00" required>
                         @error('jam')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -61,7 +63,7 @@
                         <a href="{{ route('booking.index') }}" class="btn btn-secondary">
                             <i class="fas fa-arrow-left me-1"></i>Kembali
                         </a>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="btnBooking" disabled>
                             <i class="fas fa-save me-1"></i>Buat Booking
                         </button>
                     </div>
@@ -125,13 +127,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('tanggal').min = today;
     
-    // Set default time to current time + 1 hour
-    const now = new Date();
-    now.setHours(now.getHours() + 1);
-    const timeString = now.toTimeString().slice(0, 5);
+    // Set default time to 06:00
     if (!document.getElementById('jam').value) {
-        document.getElementById('jam').value = timeString;
+        document.getElementById('jam').value = '06:00';
     }
+
+    // Enable/disable button
+    function checkForm() {
+        const lapangan = document.getElementById('lapangan_id').value;
+        const tanggal = document.getElementById('tanggal').value;
+        const jam = document.getElementById('jam').value;
+        const btn = document.getElementById('btnBooking');
+        btn.disabled = !(lapangan && tanggal && jam);
+    }
+    document.getElementById('lapangan_id').addEventListener('change', checkForm);
+    document.getElementById('tanggal').addEventListener('input', checkForm);
+    document.getElementById('jam').addEventListener('input', checkForm);
+    checkForm();
+
+    // Validasi jam booking
+    document.getElementById('jam').addEventListener('change', function() {
+        const jam = this.value;
+        if (jam < '06:00' || jam > '22:00') {
+            alert('Jam booking hanya diperbolehkan antara 06:00 - 22:00');
+            this.value = '';
+            checkForm();
+        }
+    });
 });
 </script>
 @endsection 

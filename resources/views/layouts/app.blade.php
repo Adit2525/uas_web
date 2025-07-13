@@ -22,9 +22,11 @@
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-                        </li>
+                        @if(auth()->user()->isAdmin())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('booking.index') }}">My Bookings</a>
                         </li>
@@ -56,8 +58,10 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                @if(auth()->user()->isAdmin())
+                                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                @endif
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
