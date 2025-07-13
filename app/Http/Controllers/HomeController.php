@@ -25,4 +25,5 @@ class HomeController extends Controller
         $confirmedBooking = Booking::where('status', 'confirmed')->count();
         return view('admin.dashboard', compact('lapangan', 'booking', 'pendingBooking', 'confirmedBooking'));
     }
+    
 }
