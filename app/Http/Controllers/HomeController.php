@@ -19,11 +19,11 @@ class HomeController extends Controller
         if (!auth()->user()->isAdmin()) {
             return redirect('/')->with('error', 'Hanya admin yang dapat mengakses dashboard.');
         }
-        $lapangan = Lapangan::count();
-        $booking = Booking::count();
-        $pendingBooking = Booking::where('status', 'pending')->count();
-        $confirmedBooking = Booking::where('status', 'confirmed')->count();
-        return view('admin.dashboard', compact('lapangan', 'booking', 'pendingBooking', 'confirmedBooking'));
+        $lapangan = \App\Models\Lapangan::count();
+        $booking = \App\Models\Booking::count();
+        $user = \App\Models\User::count();
+        $jadwal = \App\Models\Jadwal::count();
+        return view('admin.dashboard', compact('lapangan', 'booking', 'user', 'jadwal'));
     }
     
 }
