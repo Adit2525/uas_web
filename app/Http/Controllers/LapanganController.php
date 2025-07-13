@@ -82,12 +82,21 @@ class LapanganController extends Controller
             'jenis' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
             'lokasi' => 'required|string',
-            'gambar' => 'nullable|string'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $lapangan = Lapangan::findOrFail($id);
-        $lapangan->update($request->all());
-        return redirect()->route('lapangan.index')->with('success', 'Lapangan berhasil diperbarui');
+        $lapangan = \App\Models\Lapangan::findOrFail($id);
+        $data = $request->only(['nama', 'jenis', 'harga', 'lokasi']);
+
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = uniqid('lapangan_') . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('images', $filename, 'public');
+            $data['gambar'] = $path;
+        }
+
+        $lapangan->update($data);
+        return redirect()->route('admin.lapangan.index')->with('success', 'Data lapangan berhasil diperbarui');
     }
 
     /**
