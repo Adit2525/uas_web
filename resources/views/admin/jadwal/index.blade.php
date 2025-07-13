@@ -55,20 +55,13 @@
                                             <span class="badge bg-info">{{ $duration }} jam</span>
                                         </td>
                                         <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="{{ route('admin.jadwal.show', $jad->id) }}" class="btn btn-info btn-sm" title="Lihat Detail">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('admin.jadwal.edit', $jad->id) }}" class="btn btn-warning btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <form action="{{ route('admin.jadwal.destroy', $jad->id) }}" method="POST" class="d-inline">
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ route('admin.jadwal.show', $jad->id) }}" class="btn btn-info btn-sm" title="Lihat"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.jadwal.edit', $jad->id) }}" class="btn btn-warning btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('admin.jadwal.destroy', $jad->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                                            onclick="return confirm('Yakin ingin menghapus jadwal ini?')" title="Hapus">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus" onclick="return confirm('Yakin ingin menghapus jadwal ini?')"><i class="fas fa-times"></i></button>
                                                 </form>
                                             </div>
                                         </td>

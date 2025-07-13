@@ -69,27 +69,14 @@
                                         </td>
                                         <td>{{ $booking->created_at->format('d/m/Y H:i') }}</td>
                                         <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="{{ route('booking.show', $booking->id) }}" class="btn btn-info btn-sm" title="Lihat Detail">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                
-                                                @if(auth()->user()->isAdmin())
-                                                    <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-warning btn-sm" title="Edit Status">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                @endif
-                                                
-                                                @if($booking->status == 'pending')
-                                                    <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" 
-                                                                onclick="return confirm('Yakin ingin membatalkan booking ini?')" title="Batalkan">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ route('booking.show', $booking->id) }}" class="btn btn-info btn-sm" title="Lihat"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-warning btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus" onclick="return confirm('Yakin ingin menghapus booking ini?')"><i class="fas fa-times"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

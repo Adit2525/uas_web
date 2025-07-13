@@ -62,20 +62,13 @@
                                             <span class="badge bg-primary">{{ $lap->booking()->count() }}</span>
                                         </td>
                                         <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="{{ route('admin.lapangan.show', $lap->id) }}" class="btn btn-info btn-sm" title="Lihat Detail">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('admin.lapangan.edit', $lap->id) }}" class="btn btn-warning btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <form action="{{ route('admin.lapangan.destroy', $lap->id) }}" method="POST" class="d-inline">
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ route('admin.lapangan.show', $lap->id) }}" class="btn btn-info btn-sm" title="Lihat"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.lapangan.edit', $lap->id) }}" class="btn btn-warning btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('admin.lapangan.destroy', $lap->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                                            onclick="return confirm('Yakin ingin menghapus lapangan ini?')" title="Hapus">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Hapus" onclick="return confirm('Yakin ingin menghapus lapangan ini?')"><i class="fas fa-times"></i></button>
                                                 </form>
                                             </div>
                                         </td>
