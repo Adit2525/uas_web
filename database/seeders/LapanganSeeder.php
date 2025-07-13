@@ -31,4 +31,5 @@ class LapanganSeeder extends Seeder
             // Tambah data lain sesuai kebutuhan
         ]);
     }
+    
 }
