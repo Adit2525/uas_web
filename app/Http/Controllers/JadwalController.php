@@ -91,4 +91,5 @@ class JadwalController extends Controller
         $jadwal->delete();
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus');
     }
+    
 }
