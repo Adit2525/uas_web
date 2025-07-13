@@ -25,5 +25,4 @@ class HomeController extends Controller
         $jadwal = \App\Models\Jadwal::count();
         return view('admin.dashboard', compact('lapangan', 'booking', 'user', 'jadwal'));
     }
-    
 }
