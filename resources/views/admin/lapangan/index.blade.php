@@ -41,7 +41,7 @@
                                         <td>{{ $lap->id }}</td>
                                         <td>
                                             @if($lap->gambar)
-                                                <img src="{{ $lap->gambar }}" alt="{{ $lap->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <img src="{{ asset('storage/' . $lap->gambar) }}" alt="{{ $lap->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
                                             @else
                                                 <div class="bg-secondary text-white text-center" style="width: 50px; height: 50px; line-height: 50px;">
                                                     <i class="fas fa-futbol"></i>

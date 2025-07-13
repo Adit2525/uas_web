@@ -183,7 +183,7 @@
             </div>
             <div class="card-body">
                 @if($jadwal->lapangan->gambar)
-                    <img src="{{ $jadwal->lapangan->gambar }}" alt="{{ $jadwal->lapangan->nama }}" class="img-fluid rounded mb-3">
+                    <img src="{{ asset('storage/' . $jadwal->lapangan->gambar) }}" alt="{{ $jadwal->lapangan->nama }}" class="img-fluid rounded mb-3">
                 @else
                     <div class="bg-secondary text-white text-center py-4 rounded mb-3">
                         <i class="fas fa-futbol fa-3x"></i>

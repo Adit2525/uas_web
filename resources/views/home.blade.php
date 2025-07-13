@@ -36,7 +36,7 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
                 @if($lap->gambar)
-                    <img src="{{ $lap->gambar }}" class="card-img-top" alt="{{ $lap->nama }}" style="height: 200px; object-fit: cover;">
+                    <img src="{{ asset('storage/' . $lap->gambar) }}" class="card-img-top" alt="{{ $lap->nama }}" style="height: 200px; object-fit: cover;">
                 @else
                     <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="fas fa-futbol fa-3x text-white"></i>

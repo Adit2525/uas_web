@@ -113,7 +113,7 @@
             </div>
             <div class="card-body">
                 @if($booking->lapangan->gambar)
-                    <img src="{{ $booking->lapangan->gambar }}" class="img-fluid rounded mb-3" alt="{{ $booking->lapangan->nama }}">
+                    <img src="{{ asset('storage/' . $booking->lapangan->gambar) }}" class="img-fluid rounded mb-3" alt="{{ $booking->lapangan->nama }}">
                 @else
                     <div class="bg-secondary text-white text-center py-4 rounded mb-3">
                         <i class="fas fa-futbol fa-3x"></i>
