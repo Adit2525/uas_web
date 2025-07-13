@@ -51,7 +51,7 @@ class LapanganController extends Controller
         }
 
         \App\Models\Lapangan::create($data);
-        return redirect()->route('lapangan.index')->with('success', 'Lapangan berhasil ditambahkan');
+        return redirect()->route('admin.lapangan.index')->with('success', 'Lapangan berhasil ditambahkan');
     }
 
     /**
