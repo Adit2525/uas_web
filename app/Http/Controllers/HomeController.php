@@ -23,6 +23,10 @@ class HomeController extends Controller
         $booking = \App\Models\Booking::count();
         $user = \App\Models\User::count();
         $jadwal = \App\Models\Jadwal::count();
-        return view('admin.dashboard', compact('lapangan', 'booking', 'user', 'jadwal'));
+        $jenisStats = \App\Models\Lapangan::select('jenis')
+            ->groupBy('jenis')
+            ->selectRaw('jenis, COUNT(*) as jumlah')
+            ->get();
+        return view('admin.dashboard', compact('lapangan', 'booking', 'user', 'jadwal', 'jenisStats'));
     }
 }

@@ -52,6 +52,30 @@
         </div>
     </div>
 </div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px;">
+            <div class="card-header bg-light d-flex align-items-center" style="border-radius: 16px 16px 0 0;">
+                <i class="fas fa-chart-bar me-2 text-dark"></i>
+                <span class="fw-bold">Statistik Lapangan</span>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col">
+                        <h2 class="text-primary">{{ $lapangan }}</h2>
+                        <div>Total Lapangan</div>
+                    </div>
+                    @foreach($jenisStats as $stat)
+                        <div class="col">
+                            <h2 class="text-success">{{ $stat->jumlah }}</h2>
+                            <div>Lapangan {{ $stat->jenis }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6 mb-4">
         <div class="card shadow border-0" style="border-radius: 18px;">
