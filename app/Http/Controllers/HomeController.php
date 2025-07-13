@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function dashboard()
     {
         if (!auth()->user()->isAdmin()) {
-            return redirect('/')->with('error', 'Hanya admin yang dapat mengakses dashboard.');
+            return redirect('/')->with('error');
         }
         $lapangan = \App\Models\Lapangan::count();
         $booking = \App\Models\Booking::count();
