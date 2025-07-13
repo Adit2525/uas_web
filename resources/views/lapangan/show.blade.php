@@ -7,7 +7,7 @@
     <div class="col-md-8 offset-md-2">
         <div class="card mb-4">
             @if($lapangan->gambar)
-                <img src="{{ asset('storage/' . $lapangan->gambar) }}" class="card-img-top" alt="{{ $lapangan->nama }}">
+                <img src="{{ asset('storage/' . $lapangan->gambar) }}" class="card-img-top mb-3" alt="{{ $lapangan->nama }}" style="max-width: 100%; max-height: 350px; object-fit: cover; border-radius: 16px;">
             @endif
             <div class="card-body">
                 <h3 class="card-title">{{ $lapangan->nama }}</h3>
