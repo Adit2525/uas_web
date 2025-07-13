@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('adit_booking', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('adit_users')->onDelete('cascade');
+            $table->foreignId('lapangan_id')->constrained('adit_lapangan')->onDelete('cascade');
+            $table->date('tanggal');
+            $table->time('jam');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }
